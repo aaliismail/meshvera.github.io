@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --color-1: 217 91% 60%;
+  /* Blue 500 */
+  --color-2: 221 83% 53%;
+  /* Blue 600 */
+  --color-3: 199 89% 48%;
+  /* Cyan 500 */
+  --color-4: 224 76% 48%;
+  /* Indigo 600 */
+  --color-5: 189 94% 43%;
+  /* Cyan 600 */
+
+  --animate-pulse-blue: pulse-blue 3s infinite linear;
+
+  @keyframes pulse-blue {
+    0% {
+      background-position: 0%;
+    }
+
+    100% {
+      background-position: 200%;
+    }
+  }
+}
+
+/* Hexagon Clip Path */
+.hex-shape {
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
