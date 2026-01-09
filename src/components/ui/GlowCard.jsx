@@ -1,74 +1,74 @@
 import React, { useEffect, useRef } from 'react';
 
 const glowColorMap = {
-    blue: { base: 220, spread: 200 },
-    purple: { base: 280, spread: 300 },
-    green: { base: 120, spread: 200 },
-    red: { base: 0, spread: 200 },
-    orange: { base: 30, spread: 200 }
+  blue: { base: 220, spread: 200 },
+  purple: { base: 280, spread: 300 },
+  green: { base: 120, spread: 200 },
+  red: { base: 0, spread: 200 },
+  orange: { base: 30, spread: 200 }
 };
 
 export const GlowCard = ({
-    children,
-    className = '',
-    glowColor = 'blue',
+  children,
+  className = '',
+  glowColor = 'blue',
 }) => {
-    const cardRef = useRef(null);
-    const innerRef = useRef(null);
+  const cardRef = useRef(null);
+  const innerRef = useRef(null);
 
-    useEffect(() => {
-        const syncPointer = (e) => {
-            const { clientX: x, clientY: y } = e;
+  useEffect(() => {
+    const syncPointer = (e) => {
+      const { clientX: x, clientY: y } = e;
 
-            if (cardRef.current) {
-                cardRef.current.style.setProperty('--x', x.toFixed(2));
-                cardRef.current.style.setProperty('--xp', (x / window.innerWidth).toFixed(2));
-                cardRef.current.style.setProperty('--y', y.toFixed(2));
-                cardRef.current.style.setProperty('--yp', (y / window.innerHeight).toFixed(2));
-            }
-        };
+      if (cardRef.current) {
+        cardRef.current.style.setProperty('--x', x.toFixed(2));
+        cardRef.current.style.setProperty('--xp', (x / window.innerWidth).toFixed(2));
+        cardRef.current.style.setProperty('--y', y.toFixed(2));
+        cardRef.current.style.setProperty('--yp', (y / window.innerHeight).toFixed(2));
+      }
+    };
 
-        document.addEventListener('pointermove', syncPointer);
-        return () => document.removeEventListener('pointermove', syncPointer);
-    }, []);
+    document.addEventListener('pointermove', syncPointer);
+    return () => document.removeEventListener('pointermove', syncPointer);
+  }, []);
 
-    const { base, spread } = glowColorMap[glowColor];
+  const { base, spread } = glowColorMap[glowColor];
 
-    const getInlineStyles = () => {
-        return {
-            '--base': 210,  // Blue hue
-            '--spread': 20,  // Smaller spread to keep it blue
-            '--radius': '14',
-            '--border': '2',
-            '--backdrop': 'hsl(222 47% 11% / 0.8)',  // Slate-950 with transparency
-            '--backup-border': 'hsl(215 28% 17% / 0.3)',  // Slate-800
-            '--size': '200',
-            '--outer': '1',
-            '--border-size': 'calc(var(--border, 2) * 1px)',
-            '--spotlight-size': 'calc(var(--size, 150) * 1px)',
-            '--hue': '210',  // Fixed blue hue
-            '--saturation': '100',
-            '--lightness': '60',
-            '--bg-spot-opacity': '0.15',
-            '--border-spot-opacity': '0.8',
-            '--border-light-opacity': '0.3',
-            backgroundImage: `radial-gradient(
+  const getInlineStyles = () => {
+    return {
+      '--base': 210,  // Blue hue
+      '--spread': 20,  // Smaller spread to keep it blue
+      '--radius': '14',
+      '--border': '2',
+      '--backdrop': 'hsl(222 47% 11% / 0.8)',  // Slate-950 with transparency
+      '--backup-border': 'hsl(215 28% 17% / 0.3)',  // Slate-800
+      '--size': '200',
+      '--outer': '1',
+      '--border-size': 'calc(var(--border, 2) * 1px)',
+      '--spotlight-size': 'calc(var(--size, 150) * 1px)',
+      '--hue': '210',  // Fixed blue hue
+      '--saturation': '100',
+      '--lightness': '60',
+      '--bg-spot-opacity': '0.15',
+      '--border-spot-opacity': '0.8',
+      '--border-light-opacity': '0.3',
+      backgroundImage: `radial-gradient(
         var(--spotlight-size) var(--spotlight-size) at
         calc(var(--x, 0) * 1px)
         calc(var(--y, 0) * 1px),
         hsl(var(--hue) var(--saturation)% var(--lightness)% / var(--bg-spot-opacity)), transparent
       )`,
-            backgroundColor: 'var(--backdrop)',
-            backgroundSize: 'calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)))',
-            backgroundPosition: '50% 50%',
-            backgroundAttachment: 'fixed',
-            border: 'var(--border-size) solid var(--backup-border)',
-            position: 'relative',
-            touchAction: 'none',
-        };
+      backgroundColor: 'var(--backdrop)',
+      backgroundSize: 'calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)))',
+      backgroundPosition: '50% 50%',
+      backgroundAttachment: 'fixed',
+      border: 'var(--border-size) solid var(--backup-border)',
+      position: 'relative',
+      touchAction: 'none',
     };
+  };
 
-    const beforeAfterStyles = `
+  const beforeAfterStyles = `
     [data-glow]::before,
     [data-glow]::after {
       pointer-events: none;
@@ -124,14 +124,14 @@ export const GlowCard = ({
     }
   `;
 
-    return (
-        <>
-            <style dangerouslySetInnerHTML={{ __html: beforeAfterStyles }} />
-            <div
-                ref={cardRef}
-                data-glow
-                style={getInlineStyles()}
-                className={`
+  return (
+    <>
+      <style dangerouslySetInnerHTML={{ __html: beforeAfterStyles }} />
+      <div
+        ref={cardRef}
+        data-glow
+        style={getInlineStyles()}
+        className={`
           h-full
           rounded-2xl 
           relative 
@@ -143,10 +143,10 @@ export const GlowCard = ({
           backdrop-blur-[5px]
           ${className}
         `}
-            >
-                <div ref={innerRef} data-glow></div>
-                {children}
-            </div>
-        </>
-    );
+      >
+        <div ref={innerRef} data-glow></div>
+        {children}
+      </div>
+    </>
+  );
 };

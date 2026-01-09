@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { User, Briefcase, Zap, FileText } from 'lucide-react';
+import { User, Briefcase, Zap, FileText, Mail } from 'lucide-react';
 import { NavBar } from './components/layout/NavBar';
 import { HeroGeometric } from './components/sections/HeroGeometric';
 import { ServicesSection } from './components/sections/ServicesSection';
 import { ApproachSection } from './components/sections/ApproachSection';
 import { AboutSection } from './components/sections/AboutSection';
+import { ContactSection } from './components/sections/ContactSection';
 import { Footer } from './components/sections/Footer';
 
 function App() {
@@ -13,8 +14,8 @@ function App() {
   const navItems = [
     { name: 'Home', icon: User, id: 'home' },
     { name: 'Services', icon: Briefcase, id: 'services' },
-    { name: 'Approach', icon: Zap, id: 'approach' },
-    { name: 'About', icon: FileText, id: 'about' }
+    { name: 'About', icon: FileText, id: 'about' },
+    { name: 'Contact', icon: Mail, id: 'contact' }
   ];
 
   const handleNavClick = (name) => {
@@ -28,11 +29,10 @@ function App() {
     }
   };
 
-  // Update active tab on scroll
   useEffect(() => {
     const handleScroll = () => {
       const sections = navItems.map(item => document.getElementById(item.id));
-      const scrollPosition = window.scrollY + 200; // Offset
+      const scrollPosition = window.scrollY + 200;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
@@ -54,10 +54,10 @@ function App() {
       <main>
         <div id="home">
           <HeroGeometric
-            title1="Intelligent"
-            title2="Cyber Defense"
-            subtitle="Secure your digital infrastructure with military-grade threat detection and proactive strategic management."
-            onCtaClick={() => handleNavClick('Services')}
+            title1="IT Security"
+            title2="Made Simple"
+            subtitle="Meshvera delivers enterprise-grade cybersecurity and IT management for growing businesses. Focus on your business while we protect it."
+            onCtaClick={() => handleNavClick('Contact')}
           />
         </div>
 
@@ -65,12 +65,12 @@ function App() {
           <ServicesSection />
         </div>
 
-        <div id="approach">
-          <ApproachSection />
-        </div>
-
         <div id="about">
           <AboutSection />
+        </div>
+
+        <div id="contact">
+          <ContactSection />
         </div>
       </main>
 
