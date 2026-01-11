@@ -8,6 +8,7 @@ export function ContactSection() {
     const [formData, setFormData] = useState({
         name: '',
         company: '',
+        companySize: '',
         email: ''
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -19,7 +20,7 @@ export function ContactSection() {
 
         // Using Formspree for email delivery
         try {
-            const response = await fetch('https://formspree.io/f/xwpkqpzr', {
+            const response = await fetch('https://formspree.io/f/xqeezrrn', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -27,6 +28,7 @@ export function ContactSection() {
                 body: JSON.stringify({
                     name: formData.name,
                     company: formData.company,
+                    company_size: formData.companySize,
                     email: formData.email,
                     _replyto: formData.email,
                     _subject: `New inquiry from ${formData.company}`
@@ -38,7 +40,7 @@ export function ContactSection() {
             }
         } catch (error) {
             // Fallback to mailto
-            window.location.href = `mailto:support@meshvera.com?subject=Inquiry from ${formData.company}&body=Name: ${formData.name}%0D%0ACompany: ${formData.company}%0D%0AEmail: ${formData.email}`;
+            window.location.href = `mailto:support@meshvera.com?subject=Inquiry from ${formData.company}&body=Name: ${formData.name}%0D%0ACompany: ${formData.company}%0D%0ASize: ${formData.companySize}%0D%0AEmail: ${formData.email}`;
         }
 
         setIsSubmitting(false);
@@ -71,10 +73,10 @@ export function ContactSection() {
             <div className="max-w-xl mx-auto px-4">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                        Get Started Today
+                        Ready to Secure Your Business?
                     </h2>
                     <p className="text-slate-400 text-lg">
-                        Tell us about your business and we'll show you how Meshvera can help.
+                        Get a free security audit today.
                     </p>
                 </div>
 
@@ -108,6 +110,25 @@ export function ContactSection() {
                                 required
                                 className="h-12 bg-slate-900 border-slate-700 text-white"
                             />
+                        </div>
+
+                        <div>
+                            <Label htmlFor="companySize" className="text-white mb-2 block">
+                                Company Size
+                            </Label>
+                            <select
+                                id="companySize"
+                                value={formData.companySize}
+                                onChange={handleChange('companySize')}
+                                required
+                                className="w-full h-12 px-3 bg-slate-900 border border-slate-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            >
+                                <option value="" disabled>Select employee count</option>
+                                <option value="1-10">1-10 employees</option>
+                                <option value="11-50">11-50 employees</option>
+                                <option value="51-200">51-200 employees</option>
+                                <option value="200+">200+ employees</option>
+                            </select>
                         </div>
 
                         <div>

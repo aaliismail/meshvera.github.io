@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { User, Briefcase, Zap, FileText, Mail } from 'lucide-react';
 import { NavBar } from './components/layout/NavBar';
 import { HeroGeometric } from './components/sections/HeroGeometric';
+import { TrustSection } from './components/sections/TrustSection';
 import { ServicesSection } from './components/sections/ServicesSection';
-import { ApproachSection } from './components/sections/ApproachSection';
+import { ProcessFlowSection } from './components/sections/ProcessFlowSection';
+import { StatsSection } from './components/sections/StatsSection';
 import { AboutSection } from './components/sections/AboutSection';
 import { ContactSection } from './components/sections/ContactSection';
 import { Footer } from './components/sections/Footer';
@@ -64,6 +66,12 @@ function App() {
         <div id="services">
           <ServicesSection />
         </div>
+
+        <TrustSection />
+
+        <ProcessFlowSection />
+
+        <StatsSection />
 
         <div id="about">
           <AboutSection />
