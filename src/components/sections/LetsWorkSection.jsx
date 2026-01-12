@@ -16,7 +16,7 @@ export function LetsWorkSection() {
     };
 
     const handleBookCall = () => {
-        window.open("mailto:ismail@meshvera.com", "_blank");
+        window.open("mailto:support@meshvera.com", "_blank");
     };
 
     return (
@@ -246,7 +246,7 @@ export function LetsWorkSection() {
                     <p className="max-w-md text-sm leading-relaxed text-slate-400">
                         Have a security need? We'd love to hear about it. Let's protect your infrastructure together.
                     </p>
-                    <span className="text-xs tracking-widest uppercase text-slate-500">ismail@meshvera.com</span>
+                    <span className="text-xs tracking-widest uppercase text-slate-500">support@meshvera.com</span>
                 </div>
             </div>
         </section>

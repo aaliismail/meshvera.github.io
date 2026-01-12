@@ -20,7 +20,7 @@ export function ContactSection() {
 
         // Using Formspree for email delivery
         try {
-            const response = await fetch('https://formspree.io/f/xqeezrrn', {
+            const response = await fetch('https://formspree.io/f/mojjqwqo', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
